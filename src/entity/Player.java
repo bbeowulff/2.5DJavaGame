@@ -138,7 +138,7 @@ public class Player extends Entity{
 			}
 			break;
 		}
-		g2.drawImage(image, screenX , screenY,  gp.tileSize+16,  gp.tileSize+16, null);
+		g2.drawImage(image, screenX , screenY,  gp.tileSize,  gp.tileSize, null);
 		}else
 		{
 			switch(direction) {
@@ -183,7 +183,7 @@ public class Player extends Entity{
 				}
 				break;
 			}
-			g2.drawImage(image, screenX , screenY,  gp.tileSize+16,  gp.tileSize+16, null);
+			g2.drawImage(image, screenX , screenY,  gp.tileSize,  gp.tileSize, null);
 		}
 	}
 	
