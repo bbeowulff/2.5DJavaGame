@@ -4,12 +4,22 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Key extends SuperObject {
+import main.GamePanel;
 
-	public OBJ_Key() {
+public class OBJ_Key extends SuperObject {
+	
+	GamePanel gp;
+
+	public OBJ_Key(GamePanel gp) {
+		
+		this.gp = gp;
+		
 		name = "Key";
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile000.png"));
+			uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			
+			
 			key1 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile001.png"));
 			key2 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile002.png"));
 			key3 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile003.png"));
@@ -21,6 +31,7 @@ public class OBJ_Key extends SuperObject {
 			key9 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile009.png"));
 			key10 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile010.png"));
 			key11 = ImageIO.read(getClass().getResourceAsStream("/objects/key_tile011.png"));
+			
 			
 			
 		}catch(IOException e) {

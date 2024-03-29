@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 public class Player extends Entity{
 	
@@ -43,28 +44,61 @@ public class Player extends Entity{
 		direction = "down";
 	}	
 	public void getPlayerImage() {
-		try {
-			up1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle1.png"));
-			up2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle2.png"));
-			up1 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run2.png"));
-			down1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle1.png"));
-			down2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run2.png"));
-			left1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle1.png"));
-			left2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run2.png"));
-			right1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle1.png"));
-			right2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run2.png"));
-
-		}catch(IOException e) {
-		 e.printStackTrace();	
-		}
+//		try {
+//			up1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle1.png"));
+//			up2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle2.png"));
+//			up1 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run1.png"));
+//			up2 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run2.png"));
+//			down1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle1.png"));
+//			down2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle2.png"));
+//			down1 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run1.png"));
+//			down2 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run2.png"));
+//			left1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle1.png"));
+//			left2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle2.png"));
+//			left1 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run1.png"));
+//			left2 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run2.png"));
+//			right1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle1.png"));
+//			right2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle2.png"));
+//			right1 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run1.png"));
+//			right2 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run2.png"));
+//
+//		}catch(IOException e) {
+//		 e.printStackTrace();	
+//		}
+		
+		up1_idle = setup("back_idle1");
+		up2_idle = setup("back_idle2");
+		up1 = setup("back_run1");
+		up2 = setup("back_run2");
+		down1_idle = setup("front_idle1");
+		down2_idle = setup("front_idle2");
+		down1 = setup("front_run1");
+		down2 = setup("front_run2");
+		left1_idle = setup("left_idle1");
+		left2_idle = setup("left_idle2");
+		left1 = setup("left_run1");
+		left2 = setup("left_run2");
+		right1_idle = setup("right_idle1");
+		right2_idle = setup("right_idle2");
+		right1 = setup("right_run1");
+		right2 = setup("right_run2");
+		
 	}
+	
+	public BufferedImage setup(String imageName) {
+		UtilityTool uTool = new UtilityTool();
+		BufferedImage image = null;
+		
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/Player1/" + imageName +".png"));
+			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			
+		}catch(IOException e) {
+			 e.printStackTrace();	
+			}
+		return image;
+	}
+	
 	public void update() {
 		if(keyH.downPressed == true || keyH.upPressed == true || keyH.leftPressed == true || keyH.rightPressed == true)
 		{
@@ -256,7 +290,7 @@ public class Player extends Entity{
 				}
 				break;
 			}
-			g2.drawImage(image, screenX , screenY,  gp.tileSize,  gp.tileSize, null);
+			g2.drawImage(image, screenX , screenY, null);
 		}
 	}
 	
