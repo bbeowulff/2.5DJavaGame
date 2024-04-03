@@ -13,7 +13,7 @@ import main.UtilityTool;
 
 public class Player extends Entity{
 	
-	GamePanel gp;
+
 	KeyHandler keyH;
 	
 	public final int screenX;
@@ -21,7 +21,8 @@ public class Player extends Entity{
 	public int hasKey = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
-		this.gp = gp;
+		
+		super(gp);
 		this.keyH = keyH;
 		
 		screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -66,38 +67,25 @@ public class Player extends Entity{
 //		 e.printStackTrace();	
 //		}
 		
-		up1_idle = setup("back_idle1");
-		up2_idle = setup("back_idle2");
-		up1 = setup("back_run1");
-		up2 = setup("back_run2");
-		down1_idle = setup("front_idle1");
-		down2_idle = setup("front_idle2");
-		down1 = setup("front_run1");
-		down2 = setup("front_run2");
-		left1_idle = setup("left_idle1");
-		left2_idle = setup("left_idle2");
-		left1 = setup("left_run1");
-		left2 = setup("left_run2");
-		right1_idle = setup("right_idle1");
-		right2_idle = setup("right_idle2");
-		right1 = setup("right_run1");
-		right2 = setup("right_run2");
+		up1_idle = setup("/Player1/back_idle1");
+		up2_idle = setup("/Player1/back_idle2");
+		up1 = setup("/Player1/back_run1");
+		up2 = setup("/Player1/back_run2");
+		down1_idle = setup("/Player1/front_idle1");
+		down2_idle = setup("/Player1/front_idle2");
+		down1 = setup("/Player1/front_run1");
+		down2 = setup("/Player1/front_run2");
+		left1_idle = setup("/Player1/left_idle1");
+		left2_idle = setup("/Player1/left_idle2");
+		left1 = setup("/Player1/left_run1");
+		left2 = setup("/Player1/left_run2");
+		right1_idle = setup("/Player1/right_idle1");
+		right2_idle = setup("/Player1/right_idle2");
+		right1 = setup("/Player1/right_run1");
+		right2 = setup("/Player1/right_run2");
 		
 	}
 	
-	public BufferedImage setup(String imageName) {
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage image = null;
-		
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/Player1/" + imageName +".png"));
-			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-			
-		}catch(IOException e) {
-			 e.printStackTrace();	
-			}
-		return image;
-	}
 	
 	public void update() {
 		if(keyH.downPressed == true || keyH.upPressed == true || keyH.leftPressed == true || keyH.rightPressed == true)
@@ -122,9 +110,15 @@ public class Player extends Entity{
 		//CHECK TILE COLLISION
 		collisionOn = false;
 		gp.cChecker.checkTile(this);
+		
 		//CHECK OBJECT COLLISION
 		int objIndex = gp.cChecker.checkObject(this,true);
 		pickUpObject(objIndex);
+		
+		// CHECK NPC COLLISION
+		int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+		interactNPC(npcIndex);
+		
 		//IF COLLISION IS FALSE, PLAYER CAN MOVE
 		if(collisionOn == false) {
 			switch(direction) {
@@ -198,6 +192,14 @@ public class Player extends Entity{
 			}
 		}
 	}
+	
+	public void interactNPC(int i) {
+		
+		if(i != 999) {
+			System.out.println("lovesti gusteru");
+		}
+	}
+	
 	public void draw(Graphics2D g2) {
 		
 		BufferedImage image = null;
