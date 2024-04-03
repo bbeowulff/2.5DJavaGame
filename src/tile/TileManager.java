@@ -1,7 +1,6 @@
 package tile;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,8 +10,6 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.UtilityTool;
-
-import java.util.Random;
 
 public class TileManager {
 
@@ -32,7 +29,7 @@ public class TileManager {
 //				tile[0] = new Tile();
 //				tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Green_2.png"));
 				setup(0, "Green_2", false);
-				setup(1, "Wood_1", true);
+				setup(1, "Water_3", true);
 				setup(2, "Stone_2", true);
 				setup(3, "Stone_3", true);
 				setup(4, "Water_1", true);
