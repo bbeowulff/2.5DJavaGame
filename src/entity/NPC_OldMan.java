@@ -25,6 +25,7 @@ public class NPC_OldMan extends Entity {
 		solidArea.height = 48;
 		
 		getImage();
+		setDialogue();
 	}
 	public void getImage() {
 		
@@ -44,6 +45,17 @@ public class NPC_OldMan extends Entity {
 		right2_idle = setup("/npc/right_idle1");
 		right1 = setup("/npc/right1");
 		right2 = setup("/npc/right2");
+	}
+	
+	public void setDialogue() {					// NPC dialogue
+		
+		dialogues[0] = "Leave me alone!";
+		dialogues[1] = "Stop bothering me!";
+		dialogues[2] = "BLYYYATTTT";
+		dialogues[3] = "u mongoloid";
+
+
+
 	}
 	
 	public void setAction() {
@@ -72,5 +84,12 @@ public class NPC_OldMan extends Entity {
 		
 		}
 	}
+	
+	public void speak() {
+		
+		// Do this character specific stuff
+		super.speak();
 
+	}
 }
+	
