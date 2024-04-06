@@ -25,6 +25,7 @@ public class UI {
 	int messageCounter = 0;
 	public boolean gameFinished = false;
 	public String currentDialogue = "";
+	public int commandNum = 0;
 	
 	double playTime;
 	DecimalFormat dFormat = new DecimalFormat("#0.000");
@@ -54,6 +55,11 @@ public class UI {
 		
 		this.g2 = g2;
 		g2.setFont(purisaB);
+		
+		//TITLE STATE
+		if(gp.gameState == gp.titleState) {
+			drawTitleScreen();
+		}
 
 		// PLAY STATE
 		if(gp.gameState == gp.playState) {
@@ -114,6 +120,59 @@ public class UI {
 		}
 				
 		
+	}
+	public void drawTitleScreen() {
+		
+		g2.setColor(new Color(0,102,102));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
+		//Title name
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,86F));
+		String text = "Dl. Gussinton";
+		int x = getXforCenteredText(text);
+		int y = gp.tileSize*3;
+		
+		//shodow
+		g2.setColor(Color.black);
+		g2.drawString(text, x+5, y+5);
+		
+		//main color
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		//image
+		x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+		y += gp.tileSize*2;
+		g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+		
+		//menu
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,43F));
+		text = "NEW GAME";
+		x = getXforCenteredText(text);
+		y += gp.tileSize*3.5;
+		g2.drawString(text, x, y);
+		
+		if(commandNum == 0) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
+		
+		text = "LOAD GAME";
+		x = getXforCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		if(commandNum == 1) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
+		
+		text = "QUIT";
+		x = getXforCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		if(commandNum == 2) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
+		
+
 	}
 	public void drawPauseScreen() {
 		
