@@ -26,31 +26,74 @@ public class KeyHandler implements KeyListener {
 		
 		//TITLE STATE
 		if(gp.gameState == gp.titleState) {
-			if(code == KeyEvent.VK_W) {
-				gp.ui.commandNum--;
-				if(gp.ui.commandNum < 0) {
-					gp.ui.commandNum = 2;
+			
+			if(gp.ui.titleScreenState == 0) {
+				
+				if(code == KeyEvent.VK_W) {
+					gp.ui.commandNum--;
+					if(gp.ui.commandNum < 0) {
+						gp.ui.commandNum = 2;
+					}
+				}
+				if(code == KeyEvent.VK_S) {
+					gp.ui.commandNum++;
+					if(gp.ui.commandNum > 2) {
+						gp.ui.commandNum = 0;
+					}
+				}
+				if(code == KeyEvent.VK_ENTER) {
+					if(gp.ui.commandNum == 0) {
+						gp.ui.titleScreenState =1;
+						//gp.playMusic(0);
+					}
+					if(gp.ui.commandNum == 1) {
+						// ad later
+					}
+					if(gp.ui.commandNum == 2) {
+						System.exit(0);
+					}
 				}
 			}
-			if(code == KeyEvent.VK_S) {
-				gp.ui.commandNum++;
-				if(gp.ui.commandNum > 2) {
-					gp.ui.commandNum = 0;
-				}
-			}
-			if(code == KeyEvent.VK_ENTER) {
-				if(gp.ui.commandNum == 0) {
-					gp.gameState = gp.playState;
-					gp.playMusic(0);
-				}
-				if(gp.ui.commandNum == 1) {
-					// ad later
-				}
-				if(gp.ui.commandNum == 2) {
-					System.exit(0);
-				}
+				else if(gp.ui.titleScreenState == 1) {
+					
+					if(code == KeyEvent.VK_W) {
+						gp.ui.commandNum--;
+						if(gp.ui.commandNum < 0) {
+							gp.ui.commandNum = 3;
+						}
+					}
+					if(code == KeyEvent.VK_S) {
+						gp.ui.commandNum++;
+						if(gp.ui.commandNum > 3) {
+							gp.ui.commandNum = 0;
+						}
+					}
+					if(code == KeyEvent.VK_ENTER) {
+						if(gp.ui.commandNum == 0) {
+							System.out.println("Fight someone! Are you annoyed by some NPC?");
+							gp.gameState = gp.playState;
+							gp.playMusic(0);
+						}
+						if(gp.ui.commandNum == 1) {
+							System.out.println("Steal something, a key? Or steal someone ;)");
+							gp.gameState = gp.playState;
+							gp.playMusic(0);
+						}
+						if(gp.ui.commandNum == 2) {
+							System.out.println("Do some spells like of Harry Potter. Avada Kedavra!");
+							gp.gameState = gp.playState;
+							gp.playMusic(0);
+						}
+						if(gp.ui.commandNum == 3) {
+							gp.ui.titleScreenState = 0;
+						}
+					}
+				
+				
 			}
 			
+			
+
 		}
 		
 		// PLAY TEST
