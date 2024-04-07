@@ -9,7 +9,7 @@ import main.UtilityTool;
 
 public class SuperObject {
 
-	public BufferedImage image;
+	public BufferedImage image, image2, image3;
 	public BufferedImage key1, key2, key3, key4, key5,key6, key7, key8, key9, key10, key11, drake;
 	public String name;
 	int KeyPaintCounter = 0;
