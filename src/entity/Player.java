@@ -49,28 +49,24 @@ public class Player extends Entity{
 		life = maxLife;
 	}	
 	public void getPlayerImage() {
-//		try {
-//			up1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle1.png"));
-//			up2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/back_idle2.png"));
-//			up1 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run1.png"));
-//			up2 = ImageIO.read(getClass().getResourceAsStream("/Player1/back_run2.png"));
-//			down1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle1.png"));
-//			down2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/front_idle2.png"));
-//			down1 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run1.png"));
-//			down2 = ImageIO.read(getClass().getResourceAsStream("/Player1/front_run2.png"));
-//			left1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle1.png"));
-//			left2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/left_idle2.png"));
-//			left1 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run1.png"));
-//			left2 = ImageIO.read(getClass().getResourceAsStream("/Player1/left_run2.png"));
-//			right1_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle1.png"));
-//			right2_idle = ImageIO.read(getClass().getResourceAsStream("/Player1/right_idle2.png"));
-//			right1 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run1.png"));
-//			right2 = ImageIO.read(getClass().getResourceAsStream("/Player1/right_run2.png"));
-//
-//		}catch(IOException e) {
-//		 e.printStackTrace();	
-//		}
-		
+		//FIGHTER
+		fighter_up1_idle = setup("/Player1/fighter_idle1_back");
+		fighter_up2_idle = setup("/Player1/fighter_idle2_back");
+		fighter_up1 = setup("/Player1/fighter_back1");
+		fighter_up2 = setup("/Player1/fighter_back2");
+		fighter_down1_idle = setup("/Player1/fighter_idle1_front");
+		fighter_down2_idle = setup("/Player1/fighter_idle2_front");
+		fighter_down1 = setup("/Player1/fighter_front1");
+		fighter_down2 = setup("/Player1/fighter_front2");
+		fighter_left1_idle = setup("/Player1/fighter_idle1_left");
+		fighter_left2_idle = setup("/Player1/fighter_idle2_left");
+		fighter_left1 = setup("/Player1/fighter_left1");
+		fighter_left2 = setup("/Player1/fighter_left2");
+		fighter_right1_idle = setup("/Player1/fighter_idle1_right");
+		fighter_right2_idle = setup("/Player1/fighter_idle2_right");
+		fighter_right1 = setup("/Player1/fighter_right1");
+		fighter_right2 = setup("/Player1/fighter_right2");
+		//SORCERER
 		up1_idle = setup("/Player1/back_idle1");
 		up2_idle = setup("/Player1/back_idle2");
 		up1 = setup("/Player1/back_run1");
@@ -88,7 +84,31 @@ public class Player extends Entity{
 		right1 = setup("/Player1/right_run1");
 		right2 = setup("/Player1/right_run2");
 		
+		//THIEF
+		thief_up1_idle = setup("/Player1/thief_idle1_back");
+		thief_up2_idle = setup("/Player1/thief_idle2_back");
+		thief_up1 = setup("/Player1/thief_back1");
+		thief_up2 = setup("/Player1/thief_back2");
+		thief_down1_idle = setup("/Player1/thief_idle1_front");
+		thief_down2_idle = setup("/Player1/thief_idle2_front");
+		thief_down1 = setup("/Player1/thief_front1");
+		thief_down2 = setup("/Player1/thief_front2");
+		thief_left1_idle = setup("/Player1/thief_idle1_left");
+		thief_left2_idle = setup("/Player1/thief_idle2_left");
+		thief_left1 = setup("/Player1/thief_left1");
+		thief_left2 = setup("/Player1/thief_left2");
+		thief_right1_idle = setup("/Player1/thief_idle1_right");
+		thief_right2_idle = setup("/Player1/thief_idle2_right");
+		thief_right1 = setup("/Player1/thief_right1");
+		thief_right2 = setup("/Player1/thief_right2");
+
+		
+
+
+
 	}
+		
+	
 	
 	
 	public void update() {
@@ -188,7 +208,7 @@ public class Player extends Entity{
 				break;
 			case "Rum":
 				gp.playSE(3);
-				speed -= 2;
+				speed -=2;
 				gp.obj[i] = null;
 				gp.ui.showMEssage("That got me dizzy");
 				break;
@@ -217,6 +237,8 @@ public class Player extends Entity{
 		
 		BufferedImage image = null;
 		if(keyH.downPressed == true || keyH.upPressed == true || keyH.leftPressed == true || keyH.rightPressed == true)
+		{
+		if(gp.ui.commandNum == 2)
 		{
 		switch(direction) {
 		case "up":
@@ -260,9 +282,103 @@ public class Player extends Entity{
 			}
 			break;
 		}
+		}
+		else if(gp.ui.commandNum == 1)
+		{
+			switch(direction) {
+			case "up":
+				if(spriteNum == 1)
+				{
+					image = thief_up1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = thief_up2;
+				}
+				break;
+			case "down":
+				if(spriteNum == 1)
+				{
+					image = thief_down1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = thief_down2;
+				}
+				break;
+			case "left":
+				if(spriteNum == 1)
+				{
+					image = thief_left1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = thief_left2;
+				}
+				break;
+			case "right":
+				if(spriteNum == 1)
+				{
+					image = thief_right1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = thief_right2;
+				}
+				break;
+			}
+		}
+		else if(gp.ui.commandNum == 0)
+		{
+			switch(direction) {
+			case "up":
+				if(spriteNum == 1)
+				{
+					image = fighter_up1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = fighter_up2;
+				}
+				break;
+			case "down":
+				if(spriteNum == 1)
+				{
+					image = fighter_down1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = fighter_down2;
+				}
+				break;
+			case "left":
+				if(spriteNum == 1)
+				{
+					image = fighter_left1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = fighter_left2;
+				}
+				break;
+			case "right":
+				if(spriteNum == 1)
+				{
+					image = fighter_right1;
+				}
+				if(spriteNum == 2) 
+				{
+					image = fighter_right2;
+				}
+				break;
+			}
+		}
+		
 		g2.drawImage(image, screenX , screenY,  gp.tileSize,  gp.tileSize, null);
 		}else
 		{
+			if(gp.ui.commandNum == 2)
+			{
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1)
@@ -304,6 +420,98 @@ public class Player extends Entity{
 					image = right2_idle;
 				}
 				break;
+			}
+			}
+			else if(gp.ui.commandNum == 1)
+			{
+				switch(direction) {
+				case "up":
+					if(spriteNum == 1)
+					{
+						image = thief_up1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = thief_up2_idle;
+					}
+					break;
+				case "down":
+					if(spriteNum == 1)
+					{
+						image = thief_down1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = thief_down2_idle;
+					}
+					break;
+				case "left":
+					if(spriteNum == 1)
+					{
+						image = thief_left1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = thief_left2_idle;
+					}
+					break;
+				case "right":
+					if(spriteNum == 1)
+					{
+						image = thief_right1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = thief_right2_idle;
+					}
+					break;
+				}
+			}
+			else if(gp.ui.commandNum == 0)
+			{
+				switch(direction) {
+				case "up":
+					if(spriteNum == 2)
+					{
+						image = fighter_up1_idle;
+					}
+					if(spriteNum == 1)
+					{
+						image = fighter_up2_idle;
+					}
+					
+					break;
+				case "down":
+					if(spriteNum == 1)
+					{
+						image = fighter_down1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = fighter_down2_idle;
+					}
+					break;
+				case "left":
+					if(spriteNum == 1)
+					{
+						image = fighter_left1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = fighter_left2_idle;
+					}
+					break;
+				case "right":
+					if(spriteNum == 1)
+					{
+						image = fighter_right1_idle;
+					}
+					if(spriteNum == 2)
+					{
+						image = fighter_right2_idle;
+					}
+					break;
+				}
 			}
 			g2.drawImage(image, screenX , screenY, null);
 		}

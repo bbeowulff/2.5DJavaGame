@@ -2,10 +2,11 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 public class KeyHandler implements KeyListener {
 
 	GamePanel gp;
+	UI ui;
+	
 	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 	//debug
 	boolean checkDrawTime = false;
@@ -47,7 +48,7 @@ public class KeyHandler implements KeyListener {
 						//gp.playMusic(0);
 					}
 					if(gp.ui.commandNum == 1) {
-						// ad later
+						gp.ui.titleScreenState =2;
 					}
 					if(gp.ui.commandNum == 2) {
 						System.exit(0);
@@ -70,7 +71,8 @@ public class KeyHandler implements KeyListener {
 					}
 					if(code == KeyEvent.VK_ENTER) {
 						if(gp.ui.commandNum == 0) {
-							System.out.println("Fight someone! Are you annoyed by some NPC?");
+							System.out.println("You know who taught Hi Fives to hotwire the cart to get away with slacking off at work and not get in trouble with his boss? ");
+							System.out.println(		"My Uncle John. He's a mechanic. You know who taught him? MY MOM!");
 							gp.gameState = gp.playState;
 							gp.playMusic(0);
 						}
@@ -90,7 +92,12 @@ public class KeyHandler implements KeyListener {
 					}
 				
 				
-			}
+			}else if(gp.ui.titleScreenState == 2) {
+				if(code == KeyEvent.VK_ENTER) {
+						gp.ui.titleScreenState =0;
+					}
+				}
+			
 			
 			
 
@@ -111,7 +118,7 @@ public class KeyHandler implements KeyListener {
 			if(code == KeyEvent.VK_D) {
 				rightPressed=true;
 			}
-			if(code == KeyEvent.VK_P) {
+			if(code == KeyEvent.VK_P && gp.ui.gameFinished == false && gp.ui.youdied == false) {
 				gp.stopMusic();
 				gp.gameState = gp.pauseState;
 			}
@@ -131,7 +138,7 @@ public class KeyHandler implements KeyListener {
 			}
 		}
 		// PAUSE STATE
-		else if(gp.gameState == gp.pauseState) {
+		else if(gp.gameState == gp.pauseState && gp.ui.gameFinished == false && gp.ui.youdied == false) {
 			gp.gameState = gp.playState;
 			gp.playMusic(0);
 

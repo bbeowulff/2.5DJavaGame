@@ -1,13 +1,11 @@
 package main;
 
 import java.awt.Rectangle;
-
 public class EventHandler {
 	
 	GamePanel gp;
 	Rectangle eventRect;
 	int eventRectDefaultX, eventRectDefaultY;
-	
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
 		
@@ -19,15 +17,38 @@ public class EventHandler {
 		eventRectDefaultX = eventRect.x; 
 		eventRectDefaultY = eventRect.y;
 	}
-	
 	public void checkEvent() {
 		
 		if(hit(35, 33, "right") == true) {
 			//event happens
 			damagePit(gp.dialogueState);
 		}
+		if(hit(35, 33, "left") == true) {
+			//event happens
+			damagePit(gp.dialogueState);
+		}
+		if(hit(35, 33, "up") == true) {
+			//event happens
+			damagePit(gp.dialogueState);
+		}
+		if(hit(35, 33, "down") == true) {
+			//event happens
+			damagePit(gp.dialogueState);
+		}
 		
 		if(hit(36, 34, "right") == true) {
+			//event happens
+			teleport(gp.dialogueState);
+		}
+		if(hit(36, 34, "left") == true) {
+			//event happens
+			teleport(gp.dialogueState);
+		}
+		if(hit(36, 34, "rup") == true) {
+			//event happens
+			teleport(gp.dialogueState);
+		}
+		if(hit(36, 34, "down") == true) {
 			//event happens
 			teleport(gp.dialogueState);
 		}
@@ -64,14 +85,15 @@ public class EventHandler {
 	public void damagePit(int gameState) {
 		
 		gp.gameState = gameState;
-		gp.ui.currentDialogue = "You fall into a pit!";
+		gp.ui.currentDialogue = "You fell into a pit!";
 		gp.player.life -= 1;
+		if(gp.player.life == 0) gp.ui.youdied=true;
 	}
 	
 	public void teleport(int gameState) {
 		
 		gp.gameState = gameState;
-		gp.ui.currentDialogue = "TELEPORT!";
+		gp.ui.currentDialogue = "AM AJUNS IN PAPUCESTI!?";
 		gp.player.worldX = gp.tileSize*55;
 		gp.player.worldY = gp.tileSize*25;
 	}

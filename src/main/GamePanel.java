@@ -17,7 +17,6 @@ public class GamePanel extends JPanel implements Runnable{
 	//SCREEN SETTINGS
 	final int originalTileSize = 16;
 	final int scale =3;
-	
 	public final int tileSize = originalTileSize * scale;
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 12;
@@ -48,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int dialogueState = 3;
+	public final int rankingState = 4;
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -131,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		//TITLE SCREEN
 		if (gameState == titleState) {
+			
 			ui.draw(g2);
 		}
 		//OTHERS

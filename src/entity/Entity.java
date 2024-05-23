@@ -20,7 +20,15 @@ public class Entity {
 	public BufferedImage up1_idle, up2_idle, up1,up2,
 	down1_idle, down2_idle, down1, down2,
 	left1_idle, left2_idle, left1, left2,
-	right1_idle, right2_idle, right1, right2;
+	right1_idle, right2_idle, right1, right2, 
+	thief_up1_idle, thief_up2_idle,  thief_up1,thief_up2,
+	thief_down1_idle, thief_down2_idle, thief_down1, thief_down2,
+	thief_left1_idle, thief_left2_idle, thief_left1, thief_left2,
+	thief_right1_idle,  thief_right2_idle,thief_right1, thief_right2,
+	fighter_up1_idle, fighter_up2_idle,  fighter_up1,fighter_up2,
+	fighter_down1_idle,fighter_down2_idle, fighter_down1, fighter_down2,
+	fighter_left1_idle,fighter_left2_idle, fighter_left1, fighter_left2,
+	fighter_right1_idle,fighter_right2_idle, fighter_right1, fighter_right2;
 	
 	public String direction;
 	public int spriteCounter = 0;
